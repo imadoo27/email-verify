@@ -1,79 +1,67 @@
 ```markdown
-# 📧 Email Verification API — Fast & Easy HTML Email Sender
+# 💌 HTML Email Verification API — Smart, Simple & Instant
 
-Easily send rich HTML verification messages using a lightweight and secure API. Designed for developers who need quick and stylish verification emails — no SMTP or backend configuration required.
-
----
-
-## 🌐 Base URL
-
-```
-
-[https://bot-imad213.fwh.is/redirect.php/p](https://bot-imad213.fwh.is/redirect.php/p)
-
-```
+Easily send beautiful verification or notification emails using just a URL. No backend, no SMTP, just fast HTML-based delivery via a secure proxy.
 
 ---
 
-## 🔑 Get Your API Key
-
-To use this API, you need a personal API key.
-
-- Example key: `IMAD213`
-- Contact the admin to get your API key.
-- Keep it private to avoid misuse.
-
----
-
-## 📤 Sending an Email
-
-### ✅ Request Format
+## 🚀 API Endpoint
 
 ```
 
-GET /p?email=...\&message=...\&subject=...\&apikey=...
+[https://bot-imad213.fwh.is/proxy.php/p](https://bot-imad213.fwh.is/proxy.php/p)
 
 ````
+
+---
+
+## 🔑 Authentication
+
+You'll need an API key to use this service:
+
+- Example: `IMAD213`
+- Provided by the service admin.
+- Must be included in each request.
+
+---
+
+## ✨ Features
+
+- ✅ Supports HTML content (no encoding required!)
+- ✅ Replace `{verification_code}` automatically
+- ✅ Works with any platform: browser, mobile, backend
+- ✅ Fast delivery via proxy
+- ✅ No SMTP or third-party setup
+
+---
+
+## 📤 Request Format
+
+**GET Parameters:**
 
 | Parameter  | Description                          | Required |
 |------------|--------------------------------------|----------|
 | `email`    | Recipient email address              | ✅       |
-| `message`  | Email body in HTML (raw, not encoded)| ✅       |
-| `subject`  | Email subject line                   | ✅       |
-| `apikey`   | Your access key                      | ✅       |
+| `message`  | Email content (supports full HTML)   | ✅       |
+| `subject`  | Subject of the email                 | ✅       |
+| `apikey`   | Your personal API key                | ✅       |
 
-✅ No need to encode your HTML — send it as-is!
+🔒 HTML is sent **as-is** — no need to encode it.  
+🧩 The placeholder `{verification_code}` will be replaced with a real code on delivery.
 
 ---
 
-## 📦 Example HTML Message
+## 🌍 Example Request
 
-```html
-<div style="background:#f4f4f4; padding:20px; font-family:Arial;">
-  <h2 style="color:#2b2b2b;">Welcome!</h2>
-  <p>Your verification code is:</p>
-  <div style="font-size:24px; font-weight:bold; background:#fff; padding:10px; text-align:center;">
-    {verification_code}
-  </div>
-  <p style="color:#777;">This code is valid for 10 minutes.</p>
-</div>
+```url
+https://bot-imad213.fwh.is/proxy.php/p?email=user@example.com&message=<p>Your code is <b>{verification_code}</b></p>&subject=Email Verification&apikey=IMAD213
 ````
 
-🧩 Use `{verification_code}` in your message — it will be automatically replaced with a real code.
-
 ---
 
-## 🌍 Full Example Request
+## 💻 Code Integration Examples
 
-```
-https://bot-imad213.fwh.is/redirect.php/p?email=user@example.com&message=<div style='padding:10px;'>Your code is <b>{verification_code}</b></div>&subject=Verify Your Email&apikey=IMAD213
-```
-
----
-
-## 💻 Code Examples
-
-### 🐍 Python (using `requests`)
+### 🐍 Python (requests)
 
 ```python
 import requests
@@ -85,8 +73,8 @@ params = {
     "apikey": "IMAD213"
 }
 
-r = requests.get("https://bot-imad213.fwh.is/redirect.php/p", params=params)
-print(r.text)
+response = requests.get("https://bot-imad213.fwh.is/proxy.php/p", params=params)
+print(response.text)
 ```
 
 ---
@@ -95,16 +83,14 @@ print(r.text)
 
 ```php
 <?php
+$url = "https://bot-imad213.fwh.is/proxy.php/p";
 $params = [
     "email" => "user@example.com",
     "message" => "<p>Your code is <b>{verification_code}</b></p>",
-    "subject" => "Verify Email",
+    "subject" => "Your Code",
     "apikey" => "IMAD213"
 ];
-
-$url = "https://bot-imad213.fwh.is/redirect.php/p?" . http_build_query($params);
-$response = file_get_contents($url);
-echo $response;
+echo file_get_contents($url . '?' . http_build_query($params));
 ?>
 ```
 
@@ -116,27 +102,24 @@ echo $response;
 const params = new URLSearchParams({
   email: "user@example.com",
   message: "<p>Your code is <b>{verification_code}</b></p>",
-  subject: "Verify Email",
+  subject: "Verification Email",
   apikey: "IMAD213"
 });
 
-fetch("https://bot-imad213.fwh.is/redirect.php/p?" + params)
+fetch("https://bot-imad213.fwh.is/proxy.php/p?" + params)
   .then(res => res.text())
-  .then(console.log)
-  .catch(console.error);
+  .then(console.log);
 ```
 
 ---
 
-## 🌐 HTML Example
-
-You can also send a request from a simple HTML form:
+### 🧾 HTML Form Example
 
 ```html
-<form action="https://bot-imad213.fwh.is/redirect.php/p" method="get">
-  <input type="email" name="email" placeholder="Enter email" required><br>
-  <textarea name="message" rows="5" placeholder="HTML content with {verification_code}" required></textarea><br>
-  <input type="text" name="subject" value="Your Code" required><br>
+<form action="https://bot-imad213.fwh.is/proxy.php/p" method="get">
+  <input type="email" name="email" placeholder="Recipient Email" required><br>
+  <textarea name="message" rows="5" placeholder="Your HTML Message (e.g. include {verification_code})" required></textarea><br>
+  <input type="text" name="subject" value="Verify Your Email" required><br>
   <input type="hidden" name="apikey" value="IMAD213">
   <button type="submit">Send Email</button>
 </form>
@@ -144,41 +127,42 @@ You can also send a request from a simple HTML form:
 
 ---
 
-## 🇸🇦 النسخة العربية
+## 🌐 Arabic Description | الوصف العربي
 
-### ✅ ما وظيفة هذه الخدمة؟
+### ✅ ما هذه الخدمة؟
 
-هذه الواجهة البرمجية تتيح لك إرسال رسائل تحقق (Verification) بشكل مباشر عبر رابط يحتوي على معلومات البريد والمحتوى.
+هي واجهة برمجية لإرسال رسائل تحقق عبر البريد الإلكتروني بصيغة HTML، دون أي إعدادات SMTP، فقط عبر رابط واحد.
 
-### 🧾 صيغة الطلب:
+### 🧩 مثال:
 
 ```
-/p?email=البريد&message=الرسالة (HTML)&subject=الموضوع&apikey=رمز_الدخول
+https://bot-imad213.fwh.is/proxy.php/p?email=you@example.com&message=<p>رمزك: <b>{verification_code}</b></p>&subject=التحقق&apikey=IMAD213
 ```
 
-✅ يمكنك كتابة محتوى HTML مباشرة، مثل:
+### 💡 الميزات:
 
-```html
-<p>رمز التحقق الخاص بك: <b>{verification_code}</b></p>
-```
-
-### ⚠️ ملاحظات مهمة:
-
-* لا حاجة لترميز HTML.
-* {verification\_code} يتم استبداله تلقائيًا برمز تحقق.
-* لا تشارك رمز API الخاص بك.
-* الاستخدام العادل: 100 رسالة/ساعة.
+* تدعم HTML مباشرة (بدون ترميز)
+* يتم استبدال `{verification_code}` تلقائيًا
+* مناسبة لأي تطبيق: ويب، بايثون، PHP، جافاسكريبت
+* لا حاجة لسيرفر أو SMTP
+* إرسال سريع عبر خادم Proxy
 
 ---
 
-## 🆘 Need Help?
+## ⚠️ Important Notes
 
-* Check your API key.
-* Ensure message is valid HTML.
-* Contact support with request details if issues arise.
+* Use `{verification_code}` only once per message.
+* Avoid sharing your `apikey` publicly.
+* Do not abuse the system (rate limited).
 
 ---
 
-🚀 Enjoy your email delivery experience!
+## 💬 Need Help?
+
+If you're stuck, reach out to the admin or open an issue on GitHub (if available).
+
+---
+
+🎉 Enjoy seamless email delivery!
 
 ```
