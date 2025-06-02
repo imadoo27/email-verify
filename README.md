@@ -54,7 +54,7 @@ You'll need an API key to use this service:
 ## 🌍 Example Request
 
 ```url
-https://bot-imad213.fwh.is/proxy.php/p?email=user@example.com&message=<p>Your code is <b>{verification_code}</b></p>&subject=Email Verification&apikey=IMAD213
+https://bot-imad213.fwh.is/proxy.php/p?email=user@example.com&message=<p>Your code is <b>{verification_code}</b></p>&subject=Email Verification&apikey=#####
 ````
 
 ---
@@ -136,7 +136,7 @@ fetch("https://bot-imad213.fwh.is/proxy.php/p?" + params)
 ### 🧩 مثال:
 
 ```
-https://bot-imad213.fwh.is/proxy.php/p?email=you@example.com&message=<p>رمزك: <b>{verification_code}</b></p>&subject=التحقق&apikey=IMAD213
+https://bot-imad213.fwh.is/proxy.php/p?email=you@example.com&message=<p>رمزك: <b>{verification_code}</b></p>&subject=التحقق&apikey=#####
 ```
 
 ### 💡 الميزات:
@@ -155,6 +155,8 @@ https://bot-imad213.fwh.is/proxy.php/p?email=you@example.com&message=<p>رمزك
 * Avoid sharing your `apikey` publicly.
 * Do not abuse the system (rate limited).
 
+instagram: nasreddin_imad --> [https://www.instagram.com/nasreddin_imad)
+tik tok: black_hat_213_27 --> [https://tiktok.com/black_hat_213_27)
 ---
 
 ## 💬 Need Help?
